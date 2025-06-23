@@ -51,12 +51,12 @@ export default function RegisterScreen() {
 
     // tentative d’envoi au backend
     try {
-      const res = await fetch('http://10.173.148.14:3000/api/utilisateur', {
+      const res = await fetch('http://10.173.148.14:3000/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, motDePasse: password, prenom, nom }),
       });
-
+    
       const data = await res.json();
 
       if (res.ok) {
