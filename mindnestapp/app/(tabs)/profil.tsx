@@ -76,7 +76,7 @@ const handleLogout = async () => {
 
       {/* boîte d’affichage des statistiques */}
       <View style={styles.statsBox}>
-        <Text style={styles.statItem}>Score d’humeur <Text style={styles.bold}>{scoreHumeur}</Text></Text>
+        {/* <Text style={styles.statItem}>Score d’humeur <Text style={styles.bold}>{scoreHumeur}</Text></Text> */}
       <View style={styles.divider} />
       <Text style={styles.statItem}>Fiches lues <Text style={styles.bold}>{fichesLues}</Text></Text>
     <View style={styles.divider} />

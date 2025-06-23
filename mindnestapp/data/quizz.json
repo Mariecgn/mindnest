@@ -1,0 +1,29 @@
+{
+  "tdah": [
+    {
+      "question": "Qu’est-ce que le TDAH ?",
+      "options": [
+        "Un trouble de la vision",
+        "Un trouble de l’attention avec ou sans hyperactivité",
+        "Une phobie sociale"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "Le TDAH peut causer :",
+      "options": [
+        "Des troubles d’organisation et d’impulsivité",
+        "Des problèmes de sommeil uniquement",
+        "Une peur de parler en public"
+      ],
+      "answer": 0
+    }
+  ],
+  "anxiete": [
+    {
+      "question": "L’anxiété est...",
+      "options": ["Un virus", "Une réponse normale au stress", "Une allergie"],
+      "answer": 1
+    }
+  ]
+}

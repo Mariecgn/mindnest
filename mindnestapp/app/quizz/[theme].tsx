@@ -1,69 +1,60 @@
+import { useLocalSearchParams } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 import React, { useState } from 'react';
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
-const questions = [
-  {
-    question: "Qu’est-ce que le TDAH ?",
-    options: [
-      "Un trouble de la vision",
-      "Un trouble de l’attention avec ou sans hyperactivité",
-      "Une phobie sociale",
-    ],
-    answer: 1,
-  },
-  {
-    question: "Le TDAH peut causer :",
-    options: [
-      "Des troubles d’organisation et d’impulsivité",
-      "Des problèmes de sommeil uniquement",
-      "Une peur de parler en public",
-    ],
-    answer: 0,
-  },
-];
+// @ts-ignore
+import quizzData from '../../data/quizz.json';
 
-export default function QuizTDAH() {
+export default function QuizScreen() {
+  const { theme } = useLocalSearchParams();
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
+const questions = quizzData[theme as keyof typeof quizzData];
+
   const handleAnswer = async (index: number) => {
-  setSelected(index);
-
-  if (index === questions[current].answer) {
-    setScore(score + 1);
-  }
-
-  setTimeout(async () => {
-    if (current + 1 < questions.length) {
-      setCurrent(current + 1);
-      setSelected(null);
-    } else {
-      setFinished(true);
-
-      // ✅ Ajout ici : on incrémente les quiz terminés
-      const userId = await SecureStore.getItemAsync('userId');
-      if (userId) {
-        fetch('http://10.173.148.14:3000/api/progression/quizz', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userId }),
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log("✅ Quizz terminés :", data.quizzTermines);
-            if (data.quizzTermines % 5 === 0) {
-              Alert.alert("🎉 Bravo !", `Tu as terminé ${data.quizzTermines} quiz !`);
-            }
-          })
-          .catch(err => console.error("Erreur progression quiz :", err));
-      }
+    setSelected(index);
+    if (index === questions[current].answer) {
+      setScore(score + 1);
     }
-  }, 800);
-};
 
+    setTimeout(async () => {
+      if (current + 1 < questions.length) {
+        setCurrent(current + 1);
+        setSelected(null);
+      } else {
+        setFinished(true);
+
+        // ✅ Incrément progression
+        const userId = await SecureStore.getItemAsync('userId');
+        if (userId) {
+          fetch('http://10.173.148.14:3000/api/progression/quizz', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId }),
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log("✅ Quiz terminés :", data.quizzTermines);
+              if (data.quizzTermines % 5 === 0) {
+                Alert.alert("🎉 Bravo !", `Tu as terminé ${data.quizzTermines} quizz !`);
+              }
+            })
+            .catch(err => console.error("Erreur progression quiz :", err));
+        }
+      }
+    }, 700);
+  };
 
   const restart = () => {
     setCurrent(0);
@@ -72,9 +63,11 @@ export default function QuizTDAH() {
     setFinished(false);
   };
 
+  if (!questions) return <Text>❌ Quiz non trouvé</Text>;
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Quiz - TDAH</Text>
+      <Text style={styles.title}>Quizz - {theme}</Text>
 
       {finished ? (
         <View style={styles.resultBox}>
@@ -86,7 +79,7 @@ export default function QuizTDAH() {
       ) : (
         <View style={styles.card}>
           <Text style={styles.question}>{questions[current].question}</Text>
-          {questions[current].options.map((option, i) => (
+          {questions[current].options.map((option: string, i: number) => (
             <TouchableOpacity
               key={i}
               style={[
