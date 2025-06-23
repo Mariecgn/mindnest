@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/db'); // à adapter selon ton setup
+const db = require('../db');
 
 // ➕ Incrément fiche lue
 router.post('/fiche', async (req, res) => {

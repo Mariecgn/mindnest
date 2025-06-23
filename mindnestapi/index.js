@@ -9,10 +9,11 @@ const bodyParser = require('body-parser');
 
 // importe les différents groupes de routes
 const humeurRoutes = require('./routes/humeur');
-const utilisateurRoutes = require('./routes/register');
+const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login');
 const ficheRoutes = require('./routes/fiche');
-const progressionRoutes = require('./routes/progression.routes');
+const progressionRoutes = require('./routes/progression');
+const utilisateurRoutes = require('./routes/utilisateur');
 
 // crée l’application express
 const app = express();
@@ -27,10 +28,11 @@ app.use(bodyParser.json());
 
 // utilise les routes importées sous les préfixes définis
 app.use('/api/humeur', humeurRoutes);
-app.use('/api/utilisateur', utilisateurRoutes);
+app.use('/api/register', registerRoutes);
 app.use('/api/login', loginRoutes);
 app.use('/api/fiches', ficheRoutes);
 app.use('/api/progression', progressionRoutes);
+app.use('/api/utilisateur', utilisateurRoutes);
 
 // démarre le serveur et écoute sur le port défini
 app.listen(PORT, () => {

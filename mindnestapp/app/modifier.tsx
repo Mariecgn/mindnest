@@ -1,5 +1,6 @@
 // importe la navigation depuis expo-router
 import { useRouter } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 // importe le hook d’état
 import { useState } from 'react';
 // importe les composants react native nécessaires
@@ -18,20 +19,45 @@ export default function ModifierProfilScreen() {
   const router = useRouter();
 
   // états pour chaque champ du profil
-  const [prenom, setPrenom] = useState('Marie');
-  const [nom, setNom] = useState('Durand');
-  const [email, setEmail] = useState('marie@example.com');
-  const [tel, setTel] = useState('0601020304');
+  const [prenom, setPrenom] = useState('');
+  const [nom, setNom] = useState('');
+  const [email, setEmail] = useState('');
+  const [tel, setTel] = useState('');
 
   // fonction appelée à la sauvegarde du formulaire
-  const handleSave = () => {
-    // affiche temporairement les données dans la console
-    console.log({ prenom, nom, email, tel });
-    // affiche une alerte de confirmation
-    Alert.alert('Profil mis à jour !');
-    // retourne à l’écran précédent
-    router.back();
-  };
+  const handleSave = async () => {
+  try {
+    const userId = await SecureStore.getItemAsync('userId');
+    if (!userId) {
+      Alert.alert('Erreur', 'Utilisateur non connecté');
+      return;
+    }
+
+    const response = await fetch(`http://10.173.148.14:3000/api/utilisateur/${userId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prenom,
+        nom,
+        email,
+        telephone: tel
+      }),
+    });
+
+    if (response.ok) {
+      Alert.alert('✅ Profil mis à jour');
+      await SecureStore.setItemAsync('prenom', prenom); // on met à jour le prénom local
+      router.back();
+    } else {
+      const data = await response.json();
+      Alert.alert('Erreur', data.error || 'Erreur lors de la mise à jour');
+    }
+  } catch (err) {
+    console.error(err);
+    Alert.alert('Erreur', 'Impossible de modifier le profil');
+  }
+};
+
 
   return (
     // conteneur principal avec défilement vertical

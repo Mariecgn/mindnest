@@ -1,6 +1,8 @@
 // importe la navigation via expo-router
 import { useRouter } from 'expo-router';
 // importe les composants react native nécessaires
+import * as SecureStore from 'expo-secure-store';
+import { useEffect, useState } from 'react';
 import {
   Image,
   ScrollView,
@@ -14,23 +16,36 @@ import {
 export default function ProfilScreen() {
   // récupère la fonction de navigation
   const router = useRouter();
+  const [prenom, setPrenom] = useState('');
+  
+   useEffect(() => {
+    const fetchUser = async () => {
+      const userId = await SecureStore.getItemAsync('userId');
+      if (!userId) return;
+
+      try {
+        const res = await fetch(`http://10.173.148.14:3000/api/utilisateur/${userId}`);
+        const data = await res.json();
+        setPrenom(data.prenom || 'Utilisateur'); 
+      } catch (err) {
+        console.error("Erreur chargement profil :", err);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     // scrollview contenant l’ensemble de la page
     <ScrollView contentContainerStyle={styles.container}>
       {/* image de profil */}
       <Image
-        source={require('../../assets/images/photodeprofiltest.png')}
+        source={require('../../assets/images/avatar1.png')}
         style={styles.avatar}
       />
 
       {/* nom affiché */}
-      <Text style={styles.name}>Marie</Text>
-
-      {/* bouton pour mise à jour future (pas encore connecté à une action) */}
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Mise à jour</Text>
-      </TouchableOpacity>
+      <Text style={styles.name}>{prenom}</Text>
 
       {/* bouton pour accéder à l’écran de modification */}
       <TouchableOpacity
