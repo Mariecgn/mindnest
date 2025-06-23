@@ -59,7 +59,7 @@ const handleLogout = async () => {
     <ScrollView contentContainerStyle={styles.container}>
       {/* image de profil */}
       <Image
-        source={require('../../assets/images/avatar1.png')}
+        source={require('../../assets/images/avatarvide.jpg')}
         style={styles.avatar}
       />
 
