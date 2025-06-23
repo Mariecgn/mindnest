@@ -38,14 +38,14 @@ const questions = quizzData[theme as keyof typeof quizzData];
         // ✅ Incrément progression
         const userId = await SecureStore.getItemAsync('userId');
         if (userId) {
-          fetch('http://10.173.148.14:3000/api/progression/quizz', {
+          fetch('http://192.168.1.18:3000/api/progression/quizz', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId }),
           })
             .then(res => res.json())
             .then(data => {
-              console.log("✅ Quiz terminés :", data.quizzTermines);
+              console.log("✅ Quizz terminés :", data.quizzTermines);
               if (data.quizzTermines % 5 === 0) {
                 Alert.alert("🎉 Bravo !", `Tu as terminé ${data.quizzTermines} quizz !`);
               }

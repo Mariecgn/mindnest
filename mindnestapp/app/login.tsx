@@ -21,7 +21,7 @@ export default function LoginScreen() {
 
     try {
       // envoie une requête au backend pour vérifier les identifiants
-      const response = await fetch('http://10.173.148.14:3000/api/login', {
+      const response = await fetch('http://192.168.1.18:3000/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, motDePasse: password })

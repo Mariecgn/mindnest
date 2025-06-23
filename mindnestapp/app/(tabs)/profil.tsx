@@ -30,7 +30,7 @@ export default function ProfilScreen() {
       if (!userId) return;
 
       try {
-        const res = await fetch(`http://10.173.148.14:3000/api/utilisateur/${userId}`);
+        const res = await fetch(`http://192.168.1.18:3000/api/utilisateur/${userId}`);
         const data = await res.json();
 
         setScoreHumeur(data.score_humeur || 0);
