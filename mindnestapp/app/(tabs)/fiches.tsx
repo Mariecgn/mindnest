@@ -32,18 +32,34 @@ const getImage = (name: string) => {
       return require('../../assets/images/phobie_sociale.png');
     case 'tdah':
       return require('../../assets/images/tdah.png');
+    case 'depression':
+      return require('../../assets/images/depressionperso.png');
+    case 'addiction':
+      return require('../../assets/images/addiction.png')
+    case 'tca':
+      return require('../../assets/images/tca.png')
+    case 'tspt':
+      return require('../../assets/images/TSPT.png')
   }
 
   return null;
 };
 
 // détermine une couleur de carte selon le titre
-const getCardColor = (titre: string) => {
-  switch(titre.toLowerCase()) {
+const getCardColor = (image: string) => {
+  switch(image) {
     case 'tdah':
       return '#ffe0ed';
-    case 'phobie sociale':
+    case 'phobie_sociale':
       return '#d4eaf7';
+    case 'depression':
+      return '#fff9c4';
+    case 'addiction':
+      return '#f8d7da';
+    case 'tca':
+      return '#d4edda'
+    case 'tspt':
+      return '#e0e0e0';    
     default:
       return "#fff";
   }
@@ -93,7 +109,7 @@ export default function FichesScreen() {
             key={fiche.id}
             style={[
               styles.card,
-              { backgroundColor: getCardColor(fiche.titre) },
+              { backgroundColor: getCardColor(fiche.image) },
             ]}
             onPress={async () => {
         setSelectedFiche(fiche);
@@ -108,7 +124,6 @@ export default function FichesScreen() {
   })
     .then(res => res.json())
     .then(data => {
-      console.log("✅ Fiches lues :", data.fichesLues);
       if (data.fichesLues % 5 === 0) {
         Alert.alert("🎉 Bien joué !", `Tu as lu ${data.fichesLues} fiches ! Continue comme ça.`);
       }

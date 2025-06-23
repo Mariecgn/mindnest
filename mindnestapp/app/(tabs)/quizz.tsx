@@ -6,9 +6,22 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 // tableau des thèmes de quiz avec leur titre et route associée
 const themes = [
-  { title: 'TCA (troubles du comportement alimentaire)', route: 'tca' },
+   { title: 'TCA (troubles du comportement alimentaire)', route: 'tca' },
   { title: 'Anxiété', route: 'anxiete' },
   { title: 'TDAH (troubles de l’attention)', route: 'tdah' },
+  { title: 'Dépression', route: 'depression' },
+  { title: 'Phobie sociale', route: 'phobie_sociale' },
+  { title: 'Estime de soi', route: 'estime_de_soi' },
+  { title: 'Stress', route: 'stress' },
+  { title: 'Harcèlement scolaire', route: 'harcelement' },
+  { title: 'Addictions (écrans, substances, etc.)', route: 'addictions' },
+  { title: 'Troubles du sommeil', route: 'sommeil' },
+  { title: 'Confiance en soi', route: 'confiance' },
+  { title: 'Émotions (gestion et expression)', route: 'emotions' },
+  { title: 'Burn-out scolaire', route: 'burnout' },
+  { title: 'Relations amicales et sociales', route: 'relations' },
+  { title: 'Perfectionnisme', route: 'perfectionnisme' },
+  { title: 'Motivation et décrochage', route: 'motivation' }
 ];
 
 // composant principal de l’écran de quiz

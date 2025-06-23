@@ -2,20 +2,22 @@
   "tdah": [
     {
       "question": "Qu’est-ce que le TDAH ?",
-      "options": [
-        "Un trouble de la vision",
-        "Un trouble de l’attention avec ou sans hyperactivité",
-        "Une phobie sociale"
-      ],
+      "options": ["Un trouble de la vision", "Un trouble de l’attention avec ou sans hyperactivité", "Une phobie sociale"],
       "answer": 1
     },
     {
       "question": "Le TDAH peut causer :",
-      "options": [
-        "Des troubles d’organisation et d’impulsivité",
-        "Des problèmes de sommeil uniquement",
-        "Une peur de parler en public"
-      ],
+      "options": ["Des troubles d’organisation et d’impulsivité", "Des problèmes de sommeil uniquement", "Une peur de parler en public"],
+      "answer": 0
+    },
+    {
+      "question": "Quel est un traitement courant pour le TDAH ?",
+      "options": ["Médication, thérapies, accompagnement scolaire", "Opération chirurgicale", "Port de lunettes"],
+      "answer": 0
+    },
+    {
+      "question": "Quel symptôme est typique du TDAH ?",
+      "options": ["Hyperactivité", "Somnolence excessive", "Hypersensibilité auditive"],
       "answer": 0
     }
   ],
@@ -24,6 +26,308 @@
       "question": "L’anxiété est...",
       "options": ["Un virus", "Une réponse normale au stress", "Une allergie"],
       "answer": 1
+    },
+    {
+      "question": "Quel est un symptôme courant de l’anxiété ?",
+      "options": ["Tensions musculaires", "Grippe", "Mal de gorge"],
+      "answer": 0
+    },
+    {
+      "question": "Quand l’anxiété devient-elle problématique ?",
+      "options": ["Quand elle interfère avec la vie quotidienne", "Quand elle dure 5 minutes", "Quand elle survient pendant les vacances"],
+      "answer": 0
+    },
+    {
+      "question": "Quel trouble est lié à une anxiété excessive ?",
+      "options": ["Trouble anxieux généralisé", "Fracture osseuse", "Intolérance au lactose"],
+      "answer": 0
+    }
+  ],
+  "depression": [
+    {
+      "question": "La dépression peut se manifester par :",
+      "options": ["Une fatigue persistante", "Un appétit accru uniquement", "Une hyperactivité soudaine"],
+      "answer": 0
+    },
+    {
+      "question": "Quel est un signe fréquent de dépression chez les adolescents ?",
+      "options": ["Perte d’intérêt pour les activités", "Envie de faire du sport", "Excès de joie"],
+      "answer": 0
+    },
+    {
+      "question": "La dépression est-elle un signe de faiblesse ?",
+      "options": ["Oui", "Non", "Seulement chez les hommes"],
+      "answer": 1
+    },
+    {
+      "question": "Quel professionnel peut aider à traiter la dépression ?",
+      "options": ["Psychologue", "Plombier", "Infirmier scolaire uniquement"],
+      "answer": 0
+    }
+  ],
+  "phobie_sociale": [
+    {
+      "question": "La phobie sociale est :",
+      "options": ["Une peur intense d’interagir avec les autres", "Une allergie à la foule", "Une envie de solitude passagère"],
+      "answer": 0
+    },
+    {
+      "question": "Quel symptôme est courant dans la phobie sociale ?",
+      "options": ["Rougissement, tremblements en public", "Rhume", "Insomnie uniquement"],
+      "answer": 0
+    },
+    {
+      "question": "Comment traite-t-on souvent la phobie sociale ?",
+      "options": ["Thérapie cognitive et comportementale", "Médicaments contre le rhume", "Isolement complet"],
+      "answer": 0
+    },
+    {
+      "question": "La phobie sociale peut empêcher :",
+      "options": ["De participer en classe", "De dormir", "De manger certains aliments"],
+      "answer": 0
+    }
+  ],
+  "estime_de_soi": [
+    {
+      "question": "Avoir une bonne estime de soi signifie :",
+      "options": ["Se respecter et croire en ses capacités", "Se comparer constamment aux autres", "Ne jamais se remettre en question"],
+      "answer": 0
+    },
+    {
+      "question": "Une faible estime de soi peut conduire à :",
+      "options": ["Un isolement social", "Une grande confiance en soi", "Des disputes fréquentes avec tout le monde"],
+      "answer": 0
+    },
+    {
+      "question": "Comment améliorer son estime de soi ?",
+      "options": ["Fixer des objectifs réalisables et valoriser ses progrès", "Se critiquer pour avancer", "Éviter toute forme de retour des autres"],
+      "answer": 0
+    },
+    {
+      "question": "L’estime de soi est influencée par :",
+      "options": ["Les expériences de vie et les relations sociales", "Le groupe sanguin", "La météo"],
+      "answer": 0
+    }
+  ],
+  "stress": [
+    {
+      "question": "Le stress est une réaction...",
+      "options": ["Normale face à une pression", "Anormale et rare", "Provoquée uniquement par l'école"],
+      "answer": 0
+    },
+    {
+      "question": "Un stress chronique peut causer :",
+      "options": ["Fatigue, irritabilité, troubles du sommeil", "Bonne humeur constante", "Gain de concentration"],
+      "answer": 0
+    },
+    {
+      "question": "Une bonne manière de gérer son stress est :",
+      "options": ["La respiration, l’activité physique, en parler", "L’isolement", "Manger beaucoup"],
+      "answer": 0
+    },
+    {
+      "question": "Le stress peut-il être utile ?",
+      "options": ["Oui, il peut motiver dans certaines situations", "Non, jamais", "Seulement pendant un examen"],
+      "answer": 0
+    }
+  ],
+  "harcelement": [
+    {
+      "question": "Le harcèlement scolaire est...",
+      "options": ["Un comportement répété de violence ou de moquerie", "Une simple dispute", "Une blague entre amis"],
+      "answer": 0
+    },
+    {
+      "question": "Que faire si l’on est témoin de harcèlement ?",
+      "options": ["Prévenir un adulte", "Ignorer", "Rire avec les autres"],
+      "answer": 0
+    },
+    {
+      "question": "Le cyberharcèlement se déroule...",
+      "options": ["Sur Internet et les réseaux sociaux", "Dans les couloirs de l’école", "Uniquement en classe"],
+      "answer": 0
+    },
+    {
+      "question": "Un harcelé peut ressentir :",
+      "options": ["Anxiété, isolement, tristesse", "Joie", "Fierté"],
+      "answer": 0
+    }
+  ],
+  "addictions": [
+    {
+      "question": "Une addiction est...",
+      "options": ["Une dépendance difficile à contrôler", "Un loisir occasionnel", "Une passion temporaire"],
+      "answer": 0
+    },
+    {
+      "question": "Les jeunes peuvent être dépendants à :",
+      "options": ["Écrans, jeux, substances", "Respirer", "Manger équilibré"],
+      "answer": 0
+    },
+    {
+      "question": "L’addiction peut affecter :",
+      "options": ["La santé mentale, les relations et les études", "Uniquement la vue", "Le sommeil uniquement"],
+      "answer": 0
+    },
+    {
+      "question": "Pour sortir d’une addiction, il est conseillé de :",
+      "options": ["En parler à un professionnel", "Se cacher", "Rien faire"],
+      "answer": 0
+    }
+  ],
+  "sommeil": [
+    {
+      "question": "Un bon sommeil aide à :",
+      "options": ["Réguler l’humeur, la mémoire, la concentration", "Prendre du poids", "Parler plus vite"],
+      "answer": 0
+    },
+    {
+      "question": "Un trouble du sommeil peut être :",
+      "options": ["Insomnie, cauchemars fréquents", "Faim intense", "Allergies"],
+      "answer": 0
+    },
+    {
+      "question": "La lumière bleue des écrans avant de dormir :",
+      "options": ["Perturbe l’endormissement", "Favorise le sommeil", "N’a aucun effet"],
+      "answer": 0
+    },
+    {
+      "question": "Combien d’heures de sommeil sont conseillées pour les ados ?",
+      "options": ["8 à 10 heures", "4 à 5 heures", "12 à 14 heures"],
+      "answer": 0
+    }
+  ],
+  "confiance": [
+    {
+      "question": "Avoir confiance en soi signifie :",
+      "options": ["Croire en ses capacités", "Être parfait", "Ne jamais se tromper"],
+      "answer": 0
+    },
+    {
+      "question": "La confiance en soi se construit grâce à :",
+      "options": ["L’expérience, les réussites, l’encouragement", "Les critiques constantes", "Le silence"],
+      "answer": 0
+    },
+    {
+      "question": "Un manque de confiance peut entraîner :",
+      "options": ["De l’évitement, de la timidité", "Une grande assurance", "De la colère envers les autres"],
+      "answer": 0
+    },
+    {
+      "question": "Renforcer la confiance en soi passe par :",
+      "options": ["Se fixer des objectifs atteignables", "Se comparer tout le temps", "Se cacher"],
+      "answer": 0
+    }
+  ],
+  "emotions": [
+    {
+      "question": "Les émotions sont...",
+      "options": ["Naturelles et utiles", "À éviter", "Toujours négatives"],
+      "answer": 0
+    },
+    {
+      "question": "Reconnaître ses émotions permet de :",
+      "options": ["Mieux les gérer", "Les supprimer", "Les ignorer"],
+      "answer": 0
+    },
+    {
+      "question": "Une mauvaise gestion émotionnelle peut causer :",
+      "options": ["Des conflits, du stress, de la tristesse", "Des sourires", "Plus de sommeil"],
+      "answer": 0
+    },
+    {
+      "question": "Exprimer ses émotions peut se faire par :",
+      "options": ["La parole, l’art, l’écriture", "La violence", "Le silence total"],
+      "answer": 0
+    }
+  ],
+  "burnout": [
+    {
+      "question": "Le burn-out scolaire est un épuisement dû à :",
+      "options": ["Une surcharge de travail ou de pression", "Trop de vacances", "La météo"],
+      "answer": 0
+    },
+    {
+      "question": "Un symptôme du burn-out est :",
+      "options": ["Une perte de motivation et de concentration", "Un regain d’énergie", "Des crises de rire"],
+      "answer": 0
+    },
+    {
+      "question": "Que faire en cas de burn-out ?",
+      "options": ["Se reposer et en parler", "Travailler plus", "Ignorer les signes"],
+      "answer": 0
+    },
+    {
+      "question": "Le burn-out peut affecter :",
+      "options": ["Le moral, le corps, les relations", "Uniquement la vue", "Le goût"],
+      "answer": 0
+    }
+  ],
+  "relations": [
+    {
+      "question": "Une relation saine se base sur :",
+      "options": ["Le respect et l’écoute", "Le contrôle et la critique", "L’indifférence"],
+      "answer": 0
+    },
+    {
+      "question": "Les amis peuvent aider à :",
+      "options": ["Se sentir soutenu", "Se sentir seul", "S’isoler davantage"],
+      "answer": 0
+    },
+    {
+      "question": "Les conflits dans l’amitié peuvent être résolus par :",
+      "options": ["La communication", "Le silence", "La violence"],
+      "answer": 0
+    },
+    {
+      "question": "Être populaire est :",
+      "options": ["Moins important que se sentir respecté", "Obligatoire", "Un signe de santé mentale"],
+      "answer": 0
+    }
+  ],
+  "perfectionnisme": [
+    {
+      "question": "Le perfectionnisme peut mener à :",
+      "options": ["Du stress et une peur de l’échec", "Plus de joie", "Des résultats faciles"],
+      "answer": 0
+    },
+    {
+      "question": "Un perfectionniste a souvent peur de :",
+      "options": ["Mal faire ou échouer", "Réussir", "Parler à ses amis"],
+      "answer": 0
+    },
+    {
+      "question": "Être trop perfectionniste peut :",
+      "options": ["Ralentir les projets", "Les accélérer", "Ne rien changer"],
+      "answer": 0
+    },
+    {
+      "question": "Apprendre à accepter ses erreurs permet de :",
+      "options": ["Progresser et se sentir mieux", "Régresser", "Éviter d’agir"],
+      "answer": 0
+    }
+  ],
+  "motivation": [
+    {
+      "question": "La motivation aide à :",
+      "options": ["Se fixer des objectifs et les atteindre", "Rester immobile", "S’éparpiller"],
+      "answer": 0
+    },
+    {
+      "question": "Un décrochage peut être causé par :",
+      "options": ["Une perte de sens ou de confiance", "Trop de soutien", "Trop de sommeil"],
+      "answer": 0
+    },
+    {
+      "question": "Comment retrouver la motivation ?",
+      "options": ["Fixer de petits objectifs et demander de l’aide", "S’isoler", "Se forcer en silence"],
+      "answer": 0
+    },
+    {
+      "question": "La motivation varie selon :",
+      "options": ["Les émotions, le contexte, le soutien", "La météo uniquement", "Le nombre de followers"],
+      "answer": 0
     }
   ]
+
 }
