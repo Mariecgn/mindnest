@@ -1,5 +1,6 @@
+import * as SecureStore from 'expo-secure-store';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const questions = [
   {
@@ -28,21 +29,41 @@ export default function QuizTDAH() {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const handleAnswer = (index: number) => {
-    setSelected(index);
-    if (index === questions[current].answer) {
-      setScore(score + 1);
-    }
+  const handleAnswer = async (index: number) => {
+  setSelected(index);
 
-    setTimeout(() => {
-      if (current + 1 < questions.length) {
-        setCurrent(current + 1);
-        setSelected(null);
-      } else {
-        setFinished(true);
+  if (index === questions[current].answer) {
+    setScore(score + 1);
+  }
+
+  setTimeout(async () => {
+    if (current + 1 < questions.length) {
+      setCurrent(current + 1);
+      setSelected(null);
+    } else {
+      setFinished(true);
+
+      // ✅ Ajout ici : on incrémente les quiz terminés
+      const userId = await SecureStore.getItemAsync('userId');
+      if (userId) {
+        fetch('http://10.173.148.14:3000/api/progression/quizz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log("✅ Quiz terminés :", data.quizzTermines);
+            if (data.quizzTermines % 5 === 0) {
+              Alert.alert("🎉 Bravo !", `Tu as terminé ${data.quizzTermines} quiz !`);
+            }
+          })
+          .catch(err => console.error("Erreur progression quiz :", err));
       }
-    }, 800);
-  };
+    }
+  }, 800);
+};
+
 
   const restart = () => {
     setCurrent(0);

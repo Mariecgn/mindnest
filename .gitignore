@@ -1,0 +1,43 @@
+# === GLOBAL ===
+node_modules/
+.env
+.env.*.local
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+dist/
+build/
+.cache/
+*.bak
+*.orig
+
+# === BACKEND (mindnestapi) ===
+mindnestapi/node_modules/
+mindnestapi/.env
+mindnestapi/.DS_Store
+mindnestapi/logs/
+mindnestapi/debug.log
+
+# === FRONTEND (mindnestapp - Expo / React Native) ===
+mindnestapp/node_modules/
+mindnestapp/.expo/
+mindnestapp/.expo-shared/
+mindnestapp/.env
+mindnestapp/android/
+mindnestapp/ios/
+mindnestapp/web-build/
+mindnestapp/dist/
+mindnestapp/*.keystore
+mindnestapp/*.jks
+mindnestapp/coverage/
+
+# Images de profil / temporaires ?
+mindnestapp/assets/images/*.tmp.*
+
+# Yarn / pnpm stuff
+.yarn/
+.pnp.*

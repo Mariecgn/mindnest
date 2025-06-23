@@ -1,4 +1,5 @@
 // importe react et le hook d’état
+import * as SecureStore from 'expo-secure-store';
 import React, { useState } from 'react';
 // importe les composants nécessaires de react native
 import {
@@ -106,23 +107,29 @@ export default function FichesScreen() {
               styles.card,
               { backgroundColor: getCardColor(fiche.titre) },
             ]}
-            onPress={() => {
-              setSelectedFiche(fiche);
-            
-              // Appel à l’API pour incrémenter les fiches lues
-              fetch('http://192.168.1.18:3000/api/progression/fiche', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: 1 }), // ⚠️ à remplacer par l’ID du user connecté
-              })
-                .then(res => res.json())
-                .then(data => {
-                  if (data.trophee) {
-                    Alert.alert("🎉 Bravo !", "Tu as débloqué un trophée pour avoir lu 2 fiches !");
-                  }
-                })
-                .catch(err => console.error("Erreur progression fiche :", err));
-            }}
+            onPress={async () => {
+        setSelectedFiche(fiche);
+
+  const userId = await SecureStore.getItemAsync('userId');
+  if (!userId) return;
+
+  fetch('http://10.173.148.14:3000/api/progression', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("✅ Fiches lues :", data.fichesLues);
+      if (data.fichesLues % 5 === 0) {
+        Alert.alert("🎉 Bien joué !", `Tu as lu ${data.fichesLues} fiches ! Continue comme ça.`);
+      }
+    })
+    .catch(err => console.error("Erreur progression fiche :", err));
+}}
+
+
+
           >
             <Image
               source={getImage(fiche.image)}

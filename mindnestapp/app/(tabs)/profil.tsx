@@ -1,8 +1,9 @@
 // importe la navigation via expo-router
+import { useFocusEffect } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 // importe les composants react native nécessaires
 import * as SecureStore from 'expo-secure-store';
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   Image,
   ScrollView,
@@ -17,23 +18,41 @@ export default function ProfilScreen() {
   // récupère la fonction de navigation
   const router = useRouter();
   const [prenom, setPrenom] = useState('');
+  const [fichesLues, setFichesLues] = useState(0);
+  const [quizzTermines, setQuizzTermines] = useState(0);
+  const [scoreHumeur, setScoreHumeur] = useState(0);
+
   
-   useEffect(() => {
-    const fetchUser = async () => {
+   useFocusEffect(
+    useCallback(() => {
+    const fetchStats = async () => {
       const userId = await SecureStore.getItemAsync('userId');
       if (!userId) return;
 
       try {
         const res = await fetch(`http://10.173.148.14:3000/api/utilisateur/${userId}`);
         const data = await res.json();
-        setPrenom(data.prenom || 'Utilisateur'); 
+
+        setScoreHumeur(data.score_humeur || 0);
+        setFichesLues(data.fiches_lues || 0);
+        setQuizzTermines(data.quizz_termines || 0);
+        setPrenom(data.prenom || 'Utilisateur');
       } catch (err) {
         console.error("Erreur chargement profil :", err);
       }
     };
 
-    fetchUser();
-  }, []);
+    fetchStats();
+  }, [])
+);
+
+const handleLogout = async () => {
+  await SecureStore.deleteItemAsync('userId');
+  await SecureStore.deleteItemAsync('prenom');
+  // ajoute d'autres clés si besoin
+
+  router.replace('/login'); // ou autre route de déconnexion
+}
 
   return (
     // scrollview contenant l’ensemble de la page
@@ -57,13 +76,18 @@ export default function ProfilScreen() {
 
       {/* boîte d’affichage des statistiques */}
       <View style={styles.statsBox}>
-        <Text style={styles.statItem}>Score d’humeur <Text style={styles.bold}>0</Text></Text>
-        <View style={styles.divider} />
-        <Text style={styles.statItem}>Fiche lues <Text style={styles.bold}>0</Text></Text>
-        <View style={styles.divider} />
-        <Text style={styles.statItem}>Quiz terminés <Text style={styles.bold}>0</Text></Text>
-      </View>
+        <Text style={styles.statItem}>Score d’humeur <Text style={styles.bold}>{scoreHumeur}</Text></Text>
+      <View style={styles.divider} />
+      <Text style={styles.statItem}>Fiches lues <Text style={styles.bold}>{fichesLues}</Text></Text>
+    <View style={styles.divider} />
+    <Text style={styles.statItem}>Quizz terminés <Text style={styles.bold}>{quizzTermines}</Text></Text>
+  </View>
+<TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+  <Text style={styles.logoutText}>Se déconnecter</Text>
+</TouchableOpacity>
+
     </ScrollView>
+    
   );
 }
 
@@ -117,4 +141,17 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
+  logoutButton: {
+  backgroundColor: '#fff',
+  padding: 12,
+  borderRadius: 30,
+  marginTop: 30,
+  alignItems: 'center',
+},
+logoutText: {
+  color: '#ec6098',
+  fontWeight: 'bold',
+  fontSize: 16,
+},
+
 });

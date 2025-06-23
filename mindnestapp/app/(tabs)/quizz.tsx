@@ -1,5 +1,6 @@
 // importe la navigation depuis expo-router
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
+
 // importe les composants react native nécessaires
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
@@ -25,17 +26,17 @@ export default function QuizzScreen() {
       <Text style={styles.subtitle}>Sélectionner un thème pour commencer</Text>
 
       {/* liste des boutons générés à partir des thèmes */}
-      {themes.map((theme, index)=>( 
-        <TouchableOpacity
-          key={index}
-          style={styles.button}
-          // redirige vers une route fixe (à corriger si on veut utiliser chaque route)
-          onPress={() => router.push(`/quizz/tdah`)}
-        >
-          {/* texte du bouton avec le titre du thème */}
-          <Text style={styles.buttonText}>{theme.title}</Text>
-        </TouchableOpacity>
-      ))}
+      {themes.map((theme, index) => (
+  <Link
+    key={index}
+    href={`/quizz/${theme.route}` as any}
+    asChild
+  >
+    <TouchableOpacity style={styles.button}>
+      <Text style={styles.buttonText}>{theme.title}</Text>
+    </TouchableOpacity>
+  </Link>
+))}
     </ScrollView>
   );
 }

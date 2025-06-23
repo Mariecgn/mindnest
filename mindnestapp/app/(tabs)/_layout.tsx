@@ -38,9 +38,9 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="glossaire"
+        name="annuaire"
         options={{
-          title: 'Glossaire',
+          title: 'Annuaire',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="book" size={size} color={color} />
           ),
