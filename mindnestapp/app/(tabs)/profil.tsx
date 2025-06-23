@@ -51,7 +51,7 @@ const handleLogout = async () => {
   await SecureStore.deleteItemAsync('prenom');
   // ajoute d'autres clés si besoin
 
-  router.replace('/login'); // ou autre route de déconnexion
+  router.replace('/login');
 }
 
   return (

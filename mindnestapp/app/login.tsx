@@ -32,7 +32,7 @@ export default function LoginScreen() {
       if (response.ok) {
         // stocke l'id utilisateur et le prénom de manière sécurisée
         await SecureStore.setItemAsync('userId', String(data.user.id));
-        await SecureStore.setItemAsync('prenom', data.user.prenom); // optionnel
+        await SecureStore.setItemAsync('prenom', data.user.prenom); 
         // redirige vers la page d’accueil après connexion
         router.replace('/welcome');
       } else {

@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const humeurRoutes = require('./routes/humeur');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login');
-// const ficheRoutes = require('./routes/fiche');
+const ficheRoutes = require('./routes/fiche');
 const progressionRoutes = require('./routes/progression');
 const utilisateurRoutes = require('./routes/utilisateur');
 
@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use('/api/humeur', humeurRoutes);
 app.use('/api/register', registerRoutes);
 app.use('/api/login', loginRoutes);
-// app.use('/api/fiches', ficheRoutes);
+app.use('/api/fiche', ficheRoutes);
 app.use('/api/progression', progressionRoutes);
 app.use('/api/utilisateur', utilisateurRoutes);
 

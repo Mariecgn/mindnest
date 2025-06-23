@@ -1,6 +1,6 @@
 // importe react et le hook d’état
 import * as SecureStore from 'expo-secure-store';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // importe les composants nécessaires de react native
 import {
   Alert,
@@ -54,34 +54,22 @@ export default function FichesScreen() {
   // états pour la fiche sélectionnée et le champ de recherche
   const [selectedFiche, setSelectedFiche] = useState<Fiche | null>(null);
   const [search, setSearch] = useState('');
+  const [fiches, setFiches] = useState<Fiche[]>([]);
+  const [loading, setLoading] = useState(true);
+  
 
-  // tableau de fiches en dur pour test
-  const fiches: Fiche[] = [
-    {
-      id: 1,
-      titre: 'Anxiété',
-      contenu:
-        "L’anxiété est une réponse normale au stress, mais elle peut devenir problématique lorsqu’elle est intense, fréquente ou prolongée.\n\n📌 Quand cela apparaît ?\n- Avant une situation importante (examens, entretiens...)\n- En cas d'incertitude ou de peur de l’échec\n\n🧘 Que faire ?\n- Respirer profondément\n- Éviter les stimulants (café, écrans...)\n- Parler à quelqu’un, ou consulter si besoin",
-      categorie: 'émotion',
-      image: 'angoisse',
-    },
-    {
-      id: 2,
-      titre: 'Phobie Sociale',
-      contenu:
-        "La phobie sociale, aussi appelée anxiété sociale, est une peur intense d’être jugé, observé ou rejeté dans des situations sociales ou de performance.\n\n📍 Quand cela se manifeste ?\n- Lorsqu’il faut parler en public ou en groupe\n- Lors d’interactions avec des inconnus\n- En mangeant ou écrivant en présence d’autrui\n\n🧠 Comment ça se ressent ?\n- Crainte de rougir, transpirer, bégayer ou trembler\n- Besoin d’éviter les situations sociales\n- Pensées négatives (“je vais paraître ridicule”, “on va me juger”)\n\n💡 Que faire ?\n- Commencer par affronter de petites situations sociales\n- Respirer profondément pour calmer le corps\n- Se rappeler que tout le monde peut être maladroit, et que c’est OK\n- En parler à un thérapeute, notamment en thérapie cognitivo-comportementale (TCC)",
-      categorie: 'phobie',
-      image: 'phobie_sociale',
-    },
-    {
-      id: 3,
-      titre: 'TDAH',
-      contenu:
-        "Le TDAH (Trouble Déficit de l’Attention avec ou sans Hyperactivité) est un trouble neurodéveloppemental qui affecte la concentration, l’impulsivité et parfois l’activité motrice.\n\n🧠 Comment ça se manifeste ?\n- Difficultés à rester concentré longtemps\n- Tendance à l’impulsivité (agir sans réfléchir)\n- Hyperactivité (besoin constant de bouger ou parler)\n- Oublis fréquents, désorganisation\n\n💬 Ce que ça peut provoquer\n- Frustration, fatigue mentale, sentiment de dévalorisation\n- Incompréhensions avec les autres (école, famille, travail)\n\n💡 Que faire ?\n- Utiliser des routines et outils visuels pour s’organiser\n- Travailler par petites sessions avec des pauses\n- En parler à un professionnel (diagnostic, accompagnement)\n- Valoriser ses points forts : créativité, énergie, intuition",
-      categorie: 'neurodéveloppemental',
-      image: 'tdah',
-    },
-  ];
+  useEffect(() => {
+  fetch('http://10.173.148.14:3000/api/fiche')
+    .then(res => res.json())
+    .then(data => {
+      setFiches(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error('Erreur fetch fiches :', err);
+      setLoading(false);
+    });
+}, []);
 
   // filtre les fiches en fonction de la recherche
   const filtered = fiches.filter((fiche) =>

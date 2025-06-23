@@ -53,7 +53,7 @@ export default function QuizTDAH() {
         })
           .then(res => res.json())
           .then(data => {
-            console.log("✅ Quiz terminés :", data.quizzTermines);
+            console.log("✅ Quizz terminés :", data.quizzTermines);
             if (data.quizzTermines % 5 === 0) {
               Alert.alert("🎉 Bravo !", `Tu as terminé ${data.quizzTermines} quiz !`);
             }
