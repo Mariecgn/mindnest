@@ -17,10 +17,9 @@ router.post('/', async (req, res) => {
 //hachage mdp bcrypt
 try {
     const hash = await bcrypt.hash(motDePasse, 10);
-
     db.query(
       'INSERT INTO utilisateur (nom, prenom, email, motDePasse) VALUES (?, ?, ?, ?)',
-      [prenom, nom, email, hash],
+      [nom, prenom, email, hash],
       (err) => {
         if (err) {
           console.error('❌ Erreur enregistrement :', err);
@@ -28,7 +27,10 @@ try {
         }
 
         res.status(200).json({ message: 'Utilisateur créé' });
+        console.log('👤 Données envoyées :', { nom, prenom, email, hash });
+
       }
+      
     );
   } catch (err) {
     console.error('❌ Erreur bcrypt :', err);
