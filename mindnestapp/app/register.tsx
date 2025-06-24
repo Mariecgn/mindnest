@@ -20,6 +20,8 @@ export default function RegisterScreen() {
   const [nom, setNom] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // fonction pour valider le format de l’email
   const isValidEmail = (email: string) =>
@@ -27,10 +29,18 @@ export default function RegisterScreen() {
 
   // fonction déclenchée à la tentative de création de compte
   const handleRegister = async () => {
+    // Validation du mot de passe
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
+  if (!passwordRegex.test(password)) {
+    alert('Le mot de passe doit contenir :\n• 1 majuscule\n• 1 chiffre\n• 1 caractère spécial\n• minimum 8 caractères');
+  return;
+  }
+
     // vérifie si tous les champs sont remplis
     if (!email || !password || !prenom || !nom) {
       Alert.alert('Erreur', 'Tous les champs sont obligatoires.');
       return;
+      
     }
 
     // vérifie si l’email est valide
@@ -105,17 +115,22 @@ export default function RegisterScreen() {
         <TextInput
           style={styles.input}
           placeholder="Mot de passe"
-          secureTextEntry
+          secureTextEntry={!showPassword}
           value={password}
           onChangeText={setPassword}
         />
         <TextInput
           style={styles.input}
           placeholder="Confirmez le mot de passe"
-          secureTextEntry
+          secureTextEntry={!showConfirmPassword}
           value={confirmPassword}
           onChangeText={setConfirmPassword}
         />
+        <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+          <Text style={styles.eyeToggle}>
+            {showConfirmPassword ? '🙈 Masquer' : '👁️ Afficher'}
+          </Text>
+        </TouchableOpacity>
 
         {/* bouton pour valider l’inscription */}
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
@@ -172,5 +187,12 @@ const styles = StyleSheet.create({
     color: '#ec6098',
     textAlign: 'center',
     textDecorationLine: 'underline',
+  },
+  eyeToggle: {
+    color: '#ec6098',
+    textAlign: 'right',
+    marginTop: -5,
+    marginBottom: 8,
+    marginRight: 5,
   },
 });

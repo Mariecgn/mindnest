@@ -9,10 +9,18 @@ export default function LoginScreen() {
   // états pour les champs email et mot de passe
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
 
   // fonction appelée au clic sur "se connecter"
   const handleLogin = async () => {
     if (!email || !password) return; // verif que les champs ne sont pas vides
+    // Validation email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Veuillez entrer une adresse e-mail valide.');
+  return;
+}
 
     try {
       // envoie une requête au backend pour vérifier les identifiants
@@ -68,10 +76,16 @@ export default function LoginScreen() {
         <TextInput
           style={styles.input}
           placeholder="Mot de passe"
-          secureTextEntry
+          secureTextEntry={!showPassword}
           value={password}
           onChangeText={setPassword}
         />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+      <Text style={styles.eyeToggle}>
+        {showPassword ? '🙈 Masquer' : '👁️ Afficher'}
+      </Text>
+      </TouchableOpacity>
+
 
         {/* bouton de connexion */}
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
@@ -129,4 +143,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textDecorationLine: 'underline',
   },
+  eyeToggle: {
+  color: '#ec6098',
+  textAlign: 'right',
+  marginTop: -8,
+  marginBottom: 8,
+  marginRight: 5,
+},
 });
