@@ -1,12 +1,7 @@
-// importe le composant slider
 import Slider from '@react-native-community/slider';
-// importe la navigation
 import { useRouter } from 'expo-router';
-// importe securestore pour récupérer des données persistées
 import * as SecureStore from 'expo-secure-store';
-// importe react et les hooks d’état / effet
 import React, { useEffect, useState } from 'react';
-// importe les composants de base de react native
 import {
   StyleSheet,
   Text,

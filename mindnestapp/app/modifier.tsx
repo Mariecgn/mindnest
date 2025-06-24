@@ -1,9 +1,6 @@
-// importe la navigation depuis expo-router
 import { useRouter } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
-// importe le hook d’état
 import { useState } from 'react';
-// importe les composants react native nécessaires
 import {
   Alert,
   ScrollView,
@@ -13,7 +10,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-// composant principal pour modifier les informations du profil
 export default function ModifierProfilScreen() {
   // initialise la navigation
   const router = useRouter();

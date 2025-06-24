@@ -1,5 +1,4 @@
-// annuaire.tsx
-import { Phone } from 'lucide-react-native'; // optionnel si tu utilises lucide ou vector-icons
+import { Phone } from 'lucide-react-native';
 import React from 'react';
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 

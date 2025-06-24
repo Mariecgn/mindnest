@@ -1,8 +1,5 @@
-// importe la navigation depuis expo-router
 import { useRouter } from 'expo-router';
-// importe le hook d’état
 import { useState } from 'react';
-// importe les composants nécessaires depuis react native
 import {
   StyleSheet,
   Text,

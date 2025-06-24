@@ -1,9 +1,6 @@
-// importe la navigation depuis expo-router
 import { useRouter } from 'expo-router';
-// importe les composants nécessaires depuis react native
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-// composant principal de l’écran d’accueil
 export default function HomeScreen() {
   // initialise la navigation
   const router = useRouter();

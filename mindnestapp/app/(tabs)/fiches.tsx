@@ -1,7 +1,5 @@
-// importe react et le hook d’état
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
-// importe les composants nécessaires de react native
 import {
   Alert,
   Image,
@@ -23,7 +21,7 @@ type Fiche = {
   image: string;
 };
 
-// récupère une image locale en fonction du nom fourni
+// recup une image locale en fonction du nom fourni
 const getImage = (name: string) => {
   switch (name) {
     case 'angoisse':

@@ -1,8 +1,5 @@
-// importe la navigation depuis expo-router
 import { useRouter } from 'expo-router';
-// importe react et le hook d’état
 import React, { useState } from 'react';
-// importe les composants de base de react native
 import {
   Alert,
   ImageBackground,
@@ -13,7 +10,6 @@ import {
   View,
 } from 'react-native';
 
-// composant principal pour l’écran d’inscription
 export default function RegisterScreen() {
   // initialise la navigation
   const router = useRouter();

@@ -1,13 +1,8 @@
-// importe la navigation via expo-router
 import { useRouter } from 'expo-router';
-// importe securestore pour stocker les données sensibles
 import * as SecureStore from 'expo-secure-store';
-// importe react et le hook d’état
 import React, { useState } from 'react';
-// importe les composants de base de react native
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-// composant principal de l’écran de connexion
 export default function LoginScreen() {
   // initialisation de la navigation
   const router = useRouter();
@@ -17,7 +12,7 @@ export default function LoginScreen() {
 
   // fonction appelée au clic sur "se connecter"
   const handleLogin = async () => {
-    if (!email || !password) return; // vérifie que les champs ne sont pas vides
+    if (!email || !password) return; // verif que les champs ne sont pas vides
 
     try {
       // envoie une requête au backend pour vérifier les identifiants

@@ -1,7 +1,5 @@
-// importe la navigation depuis expo-router
 import { Link, useRouter } from 'expo-router';
 
-// importe les composants react native nécessaires
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 // tableau des thèmes de quiz avec leur titre et route associée

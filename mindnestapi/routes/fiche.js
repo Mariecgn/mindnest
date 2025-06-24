@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // ou le chemin vers ta connexion MySQL
+const db = require('../db'); 
 
-// 📚 Récupérer toutes les fiches
+// récup ttes les fiches dispo
 router.get('/', (req, res) => {
   db.query('SELECT * FROM fiche', (err, results) => {
     if (err) {
-      console.error('Erreur récupération fiches :', err);
-      return res.status(500).json({ error: 'Erreur serveur' });
+      // log si pb qd on récup des fiches
+      console.error('erreur récup fiches :', err);
+      return res.status(500).json({ error: 'erreur serveur' });
     }
+    // renvoie les fiches au client
     res.json(results);
   });
 });

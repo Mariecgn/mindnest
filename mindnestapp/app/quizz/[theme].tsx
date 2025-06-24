@@ -35,7 +35,7 @@ const questions = quizzData[theme as keyof typeof quizzData];
       } else {
         setFinished(true);
 
-        // ✅ Incrément progression
+        // incrément progression
         const userId = await SecureStore.getItemAsync('userId');
         if (userId) {
           fetch('http://10.173.148.14:3000/api/progression/quizz', {
