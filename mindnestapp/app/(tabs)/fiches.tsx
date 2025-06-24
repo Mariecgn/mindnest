@@ -75,7 +75,7 @@ export default function FichesScreen() {
   
 
   useEffect(() => {
-  fetch('http://192.168.1.18:3000/api/fiche')
+  fetch('http://10.173.148.14:3000/api/fiche')
     .then(res => res.json())
     .then(data => {
       setFiches(data);
@@ -117,7 +117,7 @@ export default function FichesScreen() {
   const userId = await SecureStore.getItemAsync('userId');
   if (!userId) return;
 
-  fetch('http://192.168.1.18:3000/api/progression', {
+  fetch('http://10.173.148.14:3000/api/progression', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ userId }),

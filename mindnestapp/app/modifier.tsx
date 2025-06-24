@@ -33,7 +33,7 @@ export default function ModifierProfilScreen() {
       return;
     }
 
-    const response = await fetch(`http://192.168.1.18:3000/api/utilisateur/${userId}`, {
+    const response = await fetch(`http://10.173.148.14:3000/api/utilisateur/${userId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
