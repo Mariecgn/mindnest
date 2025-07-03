@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 import React, { useState } from 'react';
 import {
@@ -14,6 +14,7 @@ import {
 import quizzData from '../../data/quizz.json';
 
 export default function QuizScreen() {
+  const router = useRouter();
   const { theme } = useLocalSearchParams();
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -38,7 +39,7 @@ const questions = quizzData[theme as keyof typeof quizzData];
         // incrément progression
         const userId = await SecureStore.getItemAsync('userId');
         if (userId) {
-          fetch('http://10.173.148.14:3000/api/progression/quizz', {
+          fetch('http://10.2.105.152:3000/api/progression/quizz', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId }),
@@ -56,6 +57,8 @@ const questions = quizzData[theme as keyof typeof quizzData];
     }, 700);
   };
 
+  
+
   const restart = () => {
     setCurrent(0);
     setSelected(null);
@@ -66,7 +69,12 @@ const questions = quizzData[theme as keyof typeof quizzData];
   if (!questions) return <Text>❌ Quiz non trouvé</Text>;
 
   return (
+    
     <ScrollView contentContainerStyle={styles.container}>
+      {/* 👇 Bouton retour */}
+      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <Text style={styles.backButtonText}>⬅ Retour</Text>
+      </TouchableOpacity>
       <Text style={styles.title}>Quizz - {theme}</Text>
 
       {finished ? (
@@ -153,5 +161,21 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  backButtonText: {
+    alignSelf: 'flex-start',
+    marginBottom: 10,
+    backgroundColor: '#ec6098',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+  backButton: {
+    alignSelf: 'flex-start',
+    marginBottom: 10,
+    backgroundColor: '#ec6098',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 12,
   },
 });
